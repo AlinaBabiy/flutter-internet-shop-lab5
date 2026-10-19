@@ -14,11 +14,8 @@ void main() {
           create: (BuildContext context) => CartNotifier(),
         ),
         ChangeNotifierProvider<ProductProvider>(
-          create: (BuildContext context) {
-            final provider = AppDependencies.createProductProvider();
-            provider.loadProducts();
-            return provider;
-          },
+          create: (BuildContext context) =>
+              AppDependencies.createInitializedProductProvider(),
         ),
       ],
       child: const MyApp(),

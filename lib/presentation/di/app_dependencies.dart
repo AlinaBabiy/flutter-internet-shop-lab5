@@ -11,4 +11,10 @@ class AppDependencies {
     final repository = createProductRepository();
     return ProductProvider(repository);
   }
+
+  static ProductProvider createInitializedProductProvider() {
+    final provider = createProductProvider();
+    provider.loadProducts();
+    return provider;
+  }
 }
