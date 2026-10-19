@@ -1,31 +1,51 @@
-Інтернет-магазин на Flutter
-Навчальний Flutter-застосунок для перегляду каталогу товарів.
-Архітектура застосунку
-flowchart TD
-    P["Presentation: Flutter UI та AppDependencies"]
-    A["Application: ProductProvider"]
-    D["Domain: Product та ProductRepository"]
-    R["Data: ProductRepositoryImpl"]
-    I["Infrastructure: ProductService"]
+# Інтернет-магазин на Flutter
 
-    P --> A
-    A --> D
-    P --> R
-    R --> D
-    R --> I
-Призначення шарів
-Domain — сутність Product та інтерфейс ProductRepository.
-Application — ProductProvider, керування станом каталогу.
-Data — ProductRepositoryImpl, реалізація репозиторію.
-Infrastructure — ProductService, джерело даних.
-Presentation — Flutter UI та Dependency Injection через AppDependencies.
-Встановлення та запуск
-Встановити Flutter SDK.
-Відкрити проєкт у VS Code.
-Виконати команди:
+Навчальний застосунок для перегляду каталогу товарів.
+
+## Схема архітектури Clean Architecture
+
+```mermaid
+flowchart TD
+    UI["Presentation: Flutter UI"]
+    DI["Presentation: AppDependencies"]
+    APP["Application: ProductProvider"]
+    DOMAIN["Domain: Product, ProductRepository"]
+    DATA["Data: ProductRepositoryImpl"]
+    INFRA["Infrastructure: ProductService"]
+
+    UI --> APP
+    APP --> DOMAIN
+    DI --> APP
+    DI --> DATA
+    DATA --> DOMAIN
+    DATA --> INFRA
+```
+
+## Опис шарів
+
+- **Domain:** модель Product та інтерфейс ProductRepository.
+- **Application:** ProductProvider, керування станом.
+- **Data:** ProductRepositoryImpl, реалізація репозиторію.
+- **Infrastructure:** ProductService, джерело даних.
+- **Presentation:** Flutter UI та AppDependencies для Dependency Injection.
+
+## Інструкція запуску
+
+1. Встановити Flutter SDK.
+2. Відкрити проєкт у VS Code.
+3. Виконати команди:
+
+```bash
 flutter pub get
 flutter run -d chrome
-Перевірка коду
+```
+
+## Перевірка коду
+
+```bash
 flutter analyze
-Робота з Git
-Розробка виконувалася у feature-гілках із Pull Requests у develop та подальшим злиттям у main. Створено тег v1.0.0.
+```
+
+## Git
+
+Розробка виконувалася в окремих feature-гілках із Pull Requests у develop та подальшим злиттям у main. Тег версії: v1.0.0.
