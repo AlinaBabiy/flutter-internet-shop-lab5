@@ -5,17 +5,21 @@
 ## Схема архітектури Clean Architecture
 
 ```mermaid
+
 flowchart TD
     UI["Presentation: Flutter UI"]
     DI["Presentation: AppDependencies"]
     APP["Application: ProductProvider"]
+    USECASE["Application: GetProductsUseCase"]
     DOMAIN["Domain: Product, ProductRepository"]
     DATA["Data: ProductRepositoryImpl"]
     INFRA["Infrastructure: ProductService"]
 
     UI --> APP
-    APP --> DOMAIN
+    APP --> USECASE
+    USECASE --> DOMAIN
     DI --> APP
+    DI --> USECASE
     DI --> DATA
     DATA --> DOMAIN
     DATA --> INFRA
@@ -24,7 +28,7 @@ flowchart TD
 ## Опис шарів
 
 - **Domain:** модель Product та інтерфейс ProductRepository.
-- **Application:** ProductProvider, керування станом.
+- Application: GetProductsUseCase — сценарій отримання списку товарів через інтерфейс ProductRepository; ProductProvider — керування станом застосунку.
 - **Data:** ProductRepositoryImpl, реалізація репозиторію.
 - **Infrastructure:** ProductService, джерело даних.
 - **Presentation:** Flutter UI та AppDependencies для Dependency Injection.
