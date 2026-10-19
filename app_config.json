@@ -1,1 +1,1 @@
-{"storage": "local", "mode": "development"}
+{"storage": "sqlite", "mode": "development"}
