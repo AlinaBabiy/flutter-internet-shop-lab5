@@ -1,12 +1,12 @@
 Інтернет-магазин на Flutter
-Навчальний Flutter-застосунок для перегляду каталогу товарів. Проєкт реалізовано з використанням принципів Clean Architecture, Provider та Dependency Injection.
+Навчальний Flutter-застосунок для перегляду каталогу товарів.
 Архітектура застосунку
 flowchart TD
-    P[Presentation: Flutter UI та AppDependencies]
-    A[Application: ProductProvider]
-    D[Domain: Product та ProductRepository]
-    R[Data: ProductRepositoryImpl]
-    I[Infrastructure: ProductService]
+    P["Presentation: Flutter UI та AppDependencies"]
+    A["Application: ProductProvider"]
+    D["Domain: Product та ProductRepository"]
+    R["Data: ProductRepositoryImpl"]
+    I["Infrastructure: ProductService"]
 
     P --> A
     A --> D
@@ -17,14 +17,15 @@ flowchart TD
 Domain — сутність Product та інтерфейс ProductRepository.
 Application — ProductProvider, керування станом каталогу.
 Data — ProductRepositoryImpl, реалізація репозиторію.
-Infrastructure — ProductService, джерело даних про товари.
-Presentation — інтерфейс Flutter та налаштування залежностей через AppDependencies.
-Залежності організовані через абстракцію ProductRepository: ProductProvider не залежить безпосередньо від ProductRepositoryImpl.
+Infrastructure — ProductService, джерело даних.
+Presentation — Flutter UI та Dependency Injection через AppDependencies.
 Встановлення та запуск
-Потрібні Flutter SDK, Dart SDK та VS Code або інше середовище розробки.
+Встановити Flutter SDK.
+Відкрити проєкт у VS Code.
+Виконати команди:
 flutter pub get
 flutter run -d chrome
 Перевірка коду
 flutter analyze
 Робота з Git
-Розробка виконувалася у feature-гілках з об'єднанням змін через Pull Requests у develop, а потім у main. Тег завершеної версії: v1.0.0.
+Розробка виконувалася у feature-гілках із Pull Requests у develop та подальшим злиттям у main. Створено тег v1.0.0.
