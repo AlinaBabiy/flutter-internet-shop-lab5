@@ -6,7 +6,8 @@ class GetProductsUseCase {
 
   GetProductsUseCase(this.repository);
 
-  Future<List<Product>> call() {
-    return repository.getProducts();
-  }
+ // Отримує список товарів через інтерфейс ProductRepository.
+Future<List<Product>> call() {
+  return repository.getProducts();
+}
 }
