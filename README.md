@@ -1,17 +1,51 @@
-# lab3_layout
+# Інтернет-магазин на Flutter
 
-A new Flutter project.
+Навчальний застосунок для перегляду каталогу товарів.
 
-## Getting Started
+## Схема архітектури Clean Architecture
 
-This project is a starting point for a Flutter application.
+```mermaid
+flowchart TD
+    UI["Presentation: Flutter UI"]
+    DI["Presentation: AppDependencies"]
+    APP["Application: ProductProvider"]
+    DOMAIN["Domain: Product, ProductRepository"]
+    DATA["Data: ProductRepositoryImpl"]
+    INFRA["Infrastructure: ProductService"]
 
-A few resources to get you started if this is your first Flutter project:
+    UI --> APP
+    APP --> DOMAIN
+    DI --> APP
+    DI --> DATA
+    DATA --> DOMAIN
+    DATA --> INFRA
+```
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+## Опис шарів
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+- **Domain:** модель Product та інтерфейс ProductRepository.
+- **Application:** ProductProvider, керування станом.
+- **Data:** ProductRepositoryImpl, реалізація репозиторію.
+- **Infrastructure:** ProductService, джерело даних.
+- **Presentation:** Flutter UI та AppDependencies для Dependency Injection.
+
+## Інструкція запуску
+
+1. Встановити Flutter SDK.
+2. Відкрити проєкт у VS Code.
+3. Виконати команди:
+
+```bash
+flutter pub get
+flutter run -d chrome
+```
+
+## Перевірка коду
+
+```bash
+flutter analyze
+```
+
+## Git
+
+Розробка виконувалася в окремих feature-гілках із Pull Requests у develop та подальшим злиттям у main. Тег версії: v1.0.0.
