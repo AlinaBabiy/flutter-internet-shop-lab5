@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import 'application/providers/product_provider.dart';
+import 'presentation/di/app_dependencies.dart';
 import 'screens/home_screen.dart';
 import 'providers/cart_notifier.dart';
 
@@ -8,8 +10,15 @@ void main() {
   runApp(
     MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => CartNotifier(),
+        ChangeNotifierProvider<CartNotifier>(
+          create: (BuildContext context) => CartNotifier(),
+        ),
+        ChangeNotifierProvider<ProductProvider>(
+          create: (BuildContext context) {
+            final provider = AppDependencies.createProductProvider();
+            provider.loadProducts();
+            return provider;
+          },
         ),
       ],
       child: const MyApp(),
@@ -19,7 +28,6 @@ void main() {
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
